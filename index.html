@@ -2,697 +2,575 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Feliz Cumpleaños, Darling! 🎂✨</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Felices 19, Darling ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Outfit:wght@300;400;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            /* Variables de color por defecto (serán sobrescritas por JavaScript) */
-            --primary-light: #e0f7fa;
-            --primary-dark: #00bcd4;
-            --secondary-dark: #00897b;
-            --accent-color: #e91e63;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            --primary: #ff6b6b;
+            --accent: #feca57;
+            --text-main: #ffffff;
+            --text-secondary: #f0f0f0;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            /* Fix para iOS */
-            -webkit-overflow-scrolling: touch; 
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-light) 25%, var(--primary-dark) 50%, var(--primary-dark) 75%, var(--primary-dark) 100%);
-            color: #333;
-            text-align: center;
-            /* Fix para scroll horizontal */
-            overflow-x: hidden;
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--text-main);
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
-            padding: 20px 0;
         }
 
-        body::before {
-            content: '';
+        /* Canvas de Fondo para Partículas */
+        #particle-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                radial-gradient(circle, var(--primary-dark) 1px, transparent 1px);
-            background-size: 50px 50px;
             z-index: 0;
             pointer-events: none;
-            opacity: 0.15;
         }
 
-        .secret-message {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.5);
-            font-weight: 300;
-            z-index: 1;
-            opacity: 0.6;
-            letter-spacing: 1px;
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* ESTILO MEJORADO PARA EL MENSAJE DE FECHA DE NACIMIENTO */
-        .hysteresis-message {
-            position: fixed;
-            top: 35px; 
-            left: 10px;
-            font-size: 0.8rem; /* Tamaño más grande */
-            color: white; /* Color blanco para destacar */
-            font-weight: 600;
-            z-index: 1;
-            opacity: 0.9;
-            letter-spacing: 0.5px;
-            pointer-events: none;
-            transition: opacity 1s;
-            text-align: left;
-            max-width: 250px;
-            /* Fondo sutil */
-            background-color: color-mix(in srgb, var(--primary-dark) 50%, transparent);
-            padding: 5px 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-
-        .card-container {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(240, 255, 255, 0.95));
-            border-radius: 30px;
-            box-shadow: 
-                0 20px 60px color-mix(in srgb, var(--secondary-dark) 50%, transparent),
-                0 0 100px color-mix(in srgb, var(--primary-dark) 50%, transparent),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
-            padding: 50px 40px;
-            max-width: 700px;
-            width: 90%; 
+        /* Contenedor Principal Glassmorphism */
+        .glass-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            padding: 40px 30px;
+            width: 90%;
+            max-width: 650px;
             z-index: 10;
-            animation: fadeInScale 2s ease-out;
-            margin: 30px 20px;
-            border: 3px solid color-mix(in srgb, var(--secondary-dark) 20%, transparent);
             position: relative;
-            overflow: hidden;
+            text-align: center;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: floatUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            margin: 20px 0;
         }
 
-        .card-container::before, .card-container::after {
-            content: '🌟';
-            position: absolute;
-            font-size: 2rem;
-            animation: sparkle 3s infinite;
-            filter: drop-shadow(0 0 5px var(--primary-dark));
+        @keyframes floatUp {
+            to { transform: translateY(0); opacity: 1; }
         }
 
-        .card-container::before {
-            top: 20px;
-            left: 20px;
-        }
-
-        .card-container::after {
-            bottom: 20px;
-            right: 20px;
-            animation-delay: 1.5s;
-        }
-
-        @keyframes sparkle {
-            0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
-            50% { opacity: 0.5; transform: scale(1.2) rotate(180deg); }
-        }
-
+        /* Tipografía */
         h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 5rem;
-            background: linear-gradient(45deg, var(--secondary-dark), var(--primary-dark));
+            font-family: 'Pinyon Script', cursive;
+            font-size: 4rem;
+            background: linear-gradient(to right, #fff, #ffd1dc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 20px color-mix(in srgb, var(--secondary-dark) 50%, transparent);
-            animation: titlePulse 4s infinite alternate;
-            letter-spacing: 2px;
-        }
-
-        @keyframes titlePulse {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.05); }
+            margin-bottom: 0.2em;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: var(--secondary-dark);
-            margin-top: 5px;
-            margin-bottom: 35px;
-            letter-spacing: 3px;
-            font-weight: 700;
-            text-shadow: 1px 1px 10px color-mix(in srgb, var(--secondary-dark) 30%, transparent);
-            position: relative;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            display: inline-block;
+            padding-bottom: 10px;
         }
 
-        h2::after {
-            content: '🎂';
-            display: block;
-            font-size: 1.5rem;
-            color: var(--secondary-dark);
-            margin-top: 10px;
-            animation: heartBeat 1.5s infinite;
-        }
-
-        @keyframes heartBeat {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.1); }
-            50% { transform: scale(1); }
+        /* Mensajes */
+        .message-box {
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
         }
 
         p {
-            font-size: 1.2rem;
-            line-height: 2.0; 
-            color: #444;
-            max-width: 600px;
-            margin: 0 auto 45px auto; 
-            font-weight: 400;
-            text-align: justify;
-            text-align-last: center; 
-            word-spacing: 0.05em; 
-            letter-spacing: 0.01em; 
-        }
-        
-        /* Estilo para etiquetas fuertes dentro de los mensajes (el fix de las comillas) */
-        p strong, p em {
-            color: var(--secondary-dark); /* Color oscuro para resaltar la palabra */
-            font-weight: 700;
-            font-style: normal;
-        }
-        p em {
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.3em;
-            display: inline-block;
-            transform: rotate(-2deg);
-        }
-        
-        .map-container {
-            width: 100%;
-            max-width: 500px;
-            height: 250px; 
-            position: relative;
-            margin: 30px auto 10px auto; 
-            background: linear-gradient(135deg, color-mix(in srgb, var(--primary-dark) 30%, transparent), color-mix(in srgb, var(--primary-light) 50%, transparent));
-            border-radius: 20px;
-            padding: 10px;
-            box-shadow: 0 5px 20px color-mix(in srgb, var(--secondary-dark) 30%, transparent);
-            border: 2px solid color-mix(in srgb, var(--secondary-dark) 20%, transparent);
-        }
-        
-        .world-map {
-            width: 100%;
-            height: 100%;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            animation: mapPulse 4s infinite;
-        }
-        
-        @keyframes mapPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
+            font-size: 1.1rem;
+            line-height: 1.8;
+            font-weight: 300;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        .map-text {
-            text-align: center;
-            margin: 15px auto 45px auto; 
-            font-size: 1.1rem;
-            color: var(--secondary-dark);
+        .highlight {
+            color: var(--accent);
             font-weight: 600;
+        }
+
+        .cursive-highlight {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.5em;
+            color: #ff9ff3;
+        }
+
+        /* Visualización de Distancia Mejorada */
+        .distance-viz {
+            position: relative;
+            width: 100%;
+            height: 60px;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .location-dot {
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 10px #fff;
+        }
+
+        .location-dot::after {
+            content: attr(data-loc);
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .connection-line {
+            position: absolute;
+            left: 30px;
+            right: 30px;
+            top: 50%;
+            height: 2px;
+            background: rgba(255,255,255,0.2);
+            z-index: 1;
+        }
+
+        .plane-icon {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            animation: flyAcross 4s ease-in-out infinite alternate;
+            z-index: 3;
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.8));
+        }
+
+        @keyframes flyAcross {
+            0% { left: 30px; transform: translate(0, -50%) rotate(0deg); }
+            100% { left: calc(100% - 30px); transform: translate(-100%, -50%) rotate(0deg); }
+        }
+
+        .distance-text {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: -15px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* Botón de Música */
+        .music-player {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .music-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .music-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+
+        .equalizer {
+            display: flex;
+            gap: 2px;
+            height: 12px;
+            align-items: flex-end;
+        }
+        .bar {
+            width: 3px;
+            background: #fff;
+            animation: equalize 1s infinite;
+        }
+        .bar:nth-child(1) { animation-delay: 0.1s; height: 40%; }
+        .bar:nth-child(2) { animation-delay: 0.3s; height: 80%; }
+        .bar:nth-child(3) { animation-delay: 0.5s; height: 50%; }
+
+        @keyframes equalize {
+            0%, 100% { height: 20%; }
+            50% { height: 100%; }
+        }
+        
+        .music-playing .bar { animation-play-state: running; }
+        .music-paused .bar { animation-play-state: paused; height: 20% !important; }
+
+        /* Mensajes Secretos y Footer */
+        .top-secret {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 0.65rem;
+            opacity: 0.6;
+            letter-spacing: 2px;
+            z-index: 50;
+            text-transform: uppercase;
+        }
+
+        .special-date-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            z-index: 90;
+            border: 1px solid rgba(255,255,255,0.1);
+            animation: fadeIn 2s ease-out 1s backwards;
         }
 
         .signature {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.5rem;
-            color: var(--secondary-dark);
-            margin-top: 40px;
-            line-height: 1.6;
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2rem;
+            margin-top: 30px;
+            opacity: 0.8;
         }
-        
-        .random-phrase {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: linear-gradient(135deg, color-mix(in srgb, var(--primary-light) 95%, transparent), color-mix(in srgb, var(--primary-dark) 95%, transparent));
-            padding: 18px 28px;
+
+        /* Random Phrase Flotante */
+        .floating-pill {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 16px;
             border-radius: 20px;
-            font-size: 1rem;
-            color: var(--secondary-dark);
-            font-weight: 600;
-            box-shadow: 
-                0 8px 25px color-mix(in srgb, var(--secondary-dark) 40%, transparent),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            z-index: 100;
-            animation: phraseSlide 1.5s ease-out;
-            max-width: 280px;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-        }
-        
-        .music-toggle {
-            position: fixed;
-            top: 25px;
-            right: 25px;
-            background: linear-gradient(135deg, var(--secondary-dark), var(--primary-dark));
-            color: white;
-            border: none;
-            padding: 18px 30px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            z-index: 100;
-            box-shadow: 
-                0 8px 25px color-mix(in srgb, var(--secondary-dark) 50%, transparent),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            -webkit-tap-highlight-color: transparent;
+            font-size: 0.85rem;
+            margin-top: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: pulse 3s infinite;
         }
 
-        .music-toggle:hover, .music-toggle:active {
-            transform: scale(1.08) translateY(-2px);
-            box-shadow: 0 12px 35px color-mix(in srgb, var(--secondary-dark) 60%, transparent);
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
         }
 
-        /* MEDIA QUERIES (Móvil) */
+        /* Mobile Adjustments */
         @media (max-width: 600px) {
-            body { padding: 80px 0 100px 0; }
-            h1 { font-size: 2.8rem; margin-bottom: 5px; }
-            h2 { font-size: 1.4rem; margin-bottom: 25px; letter-spacing: 1px; }
-            p { font-size: 0.95rem; line-height: 1.7; margin-bottom: 30px; padding: 0 5px; }
-            .card-container { padding: 30px 20px; margin: 20px 10px; width: 95%; border-radius: 20px; }
-            .map-container { height: 180px; margin: 20px auto 10px auto; border-radius: 15px; padding: 8px; }
-            .map-text { font-size: 0.9rem; margin: 15px auto 30px auto; padding: 0 10px; }
-            .signature { font-size: 1.8rem; margin-top: 30px; }
-            .random-phrase { font-size: 0.75rem; padding: 10px 15px; max-width: 160px; bottom: 10px; left: 10px; border-radius: 15px; }
-            .music-toggle { padding: 12px 18px; font-size: 0.9rem; top: 10px; right: 10px; border-radius: 40px; }
-            .secret-message { font-size: 0.6rem; top: 5px; left: 5px; }
-            .hysteresis-message { 
-                font-size: 0.7rem; 
-                top: 25px; 
-                left: 5px; 
-                max-width: 180px; 
-                padding: 4px 8px;
-            }
-        }
-        
-        /* Estilos de flores y pétalos sin cambios */
-        .flower {
-            position: fixed;
-            pointer-events: none;
-            opacity: 0.6; 
-            animation: fallFlower linear infinite;
-            font-size: 40px; 
-            filter: drop-shadow(2px 2px 3px color-mix(in srgb, var(--accent-color) 40%, transparent));
-            z-index: 1;
+            h1 { font-size: 3.2rem; }
+            .glass-container { width: 95%; padding: 30px 20px; margin-top: 60px; }
+            .top-secret { top: 10px; left: 10px; font-size: 0.6rem; }
+            .music-player { top: 10px; right: 10px; }
+            .plane-icon { font-size: 1.5rem; }
         }
 
-        @keyframes fallFlower {
-            0% { 
-                transform: translateY(-120px) rotate(0deg) translateX(0); 
-                opacity: 0.1; 
-            }
-            10% { opacity: 0.9; }
-            50% { 
-                transform: translateY(50vh) rotate(360deg) translateX(50px);
-                opacity: 0.8;
-            }
-            100% { 
-                transform: translateY(100vh) rotate(720deg) translateX(-30px); 
-                opacity: 0.1; 
-            }
+        /* Cursor blinking for typewriter */
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: #fff;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
         }
-        
-        .petal {
-            position: fixed;
-            width: 14px; 
-            height: 14px;
-            background: radial-gradient(ellipse at center, var(--primary-dark) 0%, var(--secondary-dark) 100%);
-            border-radius: 50% 0 50% 0;
-            pointer-events: none;
-            opacity: 0.7; 
-            animation: fallPetal linear infinite;
-            box-shadow: 0 2px 5px color-mix(in srgb, var(--primary-dark) 50%, transparent);
-            z-index: 1;
-        }
+        @keyframes blink { 50% { opacity: 0; } }
 
-        @keyframes fallPetal {
-            0% { 
-                transform: translateY(-100px) rotate(0deg); 
-                opacity: 0.1; 
-            }
-            15% { opacity: 0.8; }
-            100% { 
-                transform: translateY(100vh) rotate(1080deg); 
-                opacity: 0.1; 
-            }
-        }
-
-        @keyframes fadeInScale {
-            from { 
-                opacity: 0; 
-                transform: scale(0.85) translateY(30px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: scale(1) translateY(0); 
-            }
-        }
-
-        @keyframes phraseSlide {
-            0% { transform: translateX(-350px) rotate(-5deg); opacity: 0; }
-            60% { transform: translateX(10px) rotate(0deg); }
-            100% { transform: translateX(0) rotate(0deg); opacity: 1; }
-        }
     </style>
 </head>
 <body>
 
-<div class="secret-message">Nos vemos en enero 2026</div>
+    <canvas id="particle-canvas"></canvas>
 
-<div class="hysteresis-message">Agradezco a Dios que el 3/10/2006 a las 9:12 pm te haya dado la vida y aún más poder ser tu amigo.</div>
-
-
-<audio id="birthday-audio" loop></audio>
-<button class="music-toggle" id="musicBtn">🎵 Música</button>
-
-<div class="random-phrase" id="randomPhrase"></div>
-
-<div class="card-container">
-    <h1>¡Feliz Cumpleaños!</h1>
-    <h2 id="personName">Mi Darling Adorada</h2>
-
-    <p id="mainMessage"></p>
-
-    <div class="map-container">
-        <div class="world-map"></div>
+    <div class="top-secret">Enero 2026 ✈️</div>
+    
+    <div class="music-player">
+        <button class="music-btn music-paused" id="musicBtn">
+            <div class="equalizer">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <span id="musicText">Play</span>
+        </button>
     </div>
-    
-    <div class="map-text">4,758 km no son nada cuando la amistad es verdadera 💙</div>
 
-    <p id="secondMessage"></p>
-    
-    <div class="signature">
-        Con todo mi cariño, <br> JF
+    <audio id="bgMusic" loop preload="auto"></audio>
+
+    <div class="glass-container">
+        <h1>Feliz Cumpleaños</h1>
+        <h2 id="dynamicTitle">Darling</h2>
+
+        <div class="distance-viz">
+            <div class="location-dot" data-loc="Chile"></div>
+            <div class="connection-line">
+                <div class="plane-icon">✈️</div>
+            </div>
+            <div class="location-dot" data-loc="Colombia"></div>
+        </div>
+        <div class="distance-text">4,758 km de amistad inquebrantable</div>
+
+        <div class="message-box">
+            <p id="typewriter-text"></p>
+        </div>
+
+        <div class="floating-pill" id="randomPhrase"></div>
+
+        <div class="signature">
+            Con todo mi cariño, JF
+        </div>
     </div>
-</div>
 
-<script>
-    // Usaremos tags HTML en los mensajes (<strong> y <em>) para el Fix de Comillas
-    const messages = [
-        {
-            main: "Hoy cumples 19 y recuerdo cuando nuestra amistad empezó en <strong>2021</strong>; a veces me odiabas, a veces me amabas, ¡una verdadera <strong>montaña rusa de emociones</strong>! Pero mira dónde estamos. Eres mi persona favorita.",
-            second: "Nuestra amistad ha sobrevivido a un continente y a <strong>4,758 km</strong> de distancia, lo cual demuestra que es a prueba de todo. Mereces toda la felicidad. ¡Feliz cumpleaños, <em>Darling</em>!"
-        },
-        {
-            main: "19 años de ti en este mundo. A pesar de los <strong>miles de kilómetros</strong> que nos separan, sé que siempre estás ahí. Gracias por la confianza, la risa y por haber transformado esa 'enemistad' inicial en una hermandad incondicional.",
-            second: "Que este año te traiga las mismas alegrías y la misma paz que tú me das. Valoro infinitamente los momentos que hemos pasado juntos. ¡Te adoro con el alma!"
-        },
-        {
-            main: "A tus 19 años has dejado una huella enorme. Nuestra amistad, que comenzó con alguna fricción en <strong>2021</strong>, es la que más atesoro. Es un viaje loco y hermoso, lleno de subidas y bajadas, como una <strong>montaña rusa</strong>.",
-            second: "Estaré aquí para animarte desde Chile. No importa la distancia, mi apoyo es total. Que este nuevo ciclo sea espectacular. ¡Feliz cumpleaños, mi mejor amiga!"
-        },
-        {
-            main: "Hoy celebramos no solo tus 19 años, sino la increíble historia de nuestra amistad. Desde esa época 'oscura' en que <strong>nos odiábamos</strong> (ya sabes, la típica <strong>montaña rusa</strong>), hasta hoy, eres la persona más leal que conozco.",
-            second: "Que este año te traiga grandes éxitos y te aseguro que <strong>4,758 km</strong> es un detalle menor para el cariño que te tengo. ¡Feliz cumpleaños, mi compañera de vida!"
-        },
-        {
-            main: "19 años de pura luz. Desde el principio, nuestra amistad fue intensa, una <strong>montaña rusa</strong> de emociones que nos unió más que a nadie. Has sido un apoyo increíble a pesar de vivir en otro país.",
-            second: "Gracias por cada videollamada y cada mensaje que acorta la distancia. Que la vida te dé todo lo que soñaste. Estaré aquí para celebrar todo lo que viene. ¡Te quiero mucho!"
-        },
-        {
-            main: "19 años de pura magia. Nuestra amistad es un viaje que empezó en <strong>2021</strong>; una montaña rusa que ha forjado el mejor de los lazos. Has sido mi confidente y apoyo incondicional.",
-            second: "Gracias por ser mi cómplice. Que la vida te trate con la misma dulzura que tú tratas al mundo. Mereces absolutamente todo lo bueno. ¡Feliz cumpleaños!"
-        },
-        {
-            main: "A los 19 años tienes toda una vida de posibilidades frente a ti, y yo estaré aquí, desde Chile, animándote en cada paso. Eres extraordinaria y me inspiras más de lo que imaginas, incluso con la distancia.",
-            second: "Que este año te traiga claridad en tus metas y valentía para perseguir tus sueños. Y recuerda, aunque estemos lejos, nuestra conexión trasciende los <strong>4,758 km</strong>. ¡Feliz cumpleaños! Te quiero muchísimo."
-        },
-        {
-            main: "Cumplir 19 nunca se había visto tan radiante. Eres inteligente, hermosa y posees un corazón que no tiene comparación. Me siento bendecido de compartir esta amistad contigo, a pesar de la distancia.",
-            second: "Que este cumpleaños sea el inicio de tu mejor año hasta ahora. Que encuentres felicidad en cada día y que nunca olvides lo valiosa que eres. ¡Feliz cumpleaños, mi reina de Colombia!"
-        },
-        {
-            main: "19 años de tu siendo exactamente quien necesitas ser. Admiro tu autenticidad y esa capacidad tuya de hacer sentir especiales a quienes te rodean. Desde Copiapó te mando todo mi cariño y mis mejores deseos.",
-            second: "La distancia solo ha fortalecido nuestra amistad. Eres prueba viviente de que las conexiones verdaderas no se miden en kilómetros sino en momentos compartidos. ¡Feliz cumpleaños, <em>Darling</em>!"
-        },
-        {
-            main: "Hoy el mundo celebra 19 años de tu existencia, y yo celebro el privilegio de conocerte desde <strong>2021</strong>. Eres de esas personas que dejan huella, que hacen de este mundo un lugar mejor.",
-            second: "Que este año esté lleno de oportunidades brillantes, de risas hasta que duela el estómago y de momentos que te hagan sentir completamente viva. ¡Feliz cumpleaños! Te quiero con el alma."
-        },
-        {
-            main: "¡Feliz cumpleaños, <em>Darling</em>! Sé que tu vida está a punto de dar un giro emocionante. Recuerda que siempre cuentas conmigo para celebrar cada paso, cada éxito, y cada locura que se te ocurra.",
-            second: "¡Feliz cumpleaños <em>Darling</em>! 🤰" 
-        }
-    ];
+    <div class="special-date-toast">
+        3/10/2006 • 19 Años de Luz ✨
+    </div>
 
-    const songs = [
-        "https://dl.dropboxusercontent.com/scl/fi/ehgsuyuy16kfxwz94ko0v/AUDIO-2025-09-30-20-46-11.mp3?rlkey=wf5t9wmdqzt6vcouoxykgnyh5",
-        "https://dl.dropboxusercontent.com/scl/fi/t3tg9840c3n0haeiryk1s/AUDIO-2025-09-30-20-48-07.mp3?rlkey=m7bo5nf6sbq0lkqjio837rajo",
-        "https://dl.dropboxusercontent.com/scl/fi/2m0dpurkrxryxsy3ipg7i/AUDIO-2025-09-30-20-48-52.mp3?rlkey=js57rle74kvswwam4la1ooy92",
-        "https://dl.dropboxusercontent.com/scl/fi/ox7mgppj2jwlqgc8reqox/Manuel-Carrasco-Qu-Bonito-Es-Querer-Video-Oficial.mp3?rlkey=gs2qm1k6r9uf3uke2hnb3i54d&st=b286jtm2&dl=0", 
-        "https://dl.dropboxusercontent.com/scl/fi/gf1fih936g0nny5vnpa0t/Jarabe-de-Palo-Eso-que-t-me-das-Videoclip-Oficial.mp3?rlkey=cjz7js8p0nasfvem78qbsvt6n&st=nk7d4wy5&dl=0",
-        "https://www.dropbox.com/scl/fi/tgnxutosrnlkwyc7a8ssm/BAD-BUNNY-120-EL-LTIMO-TOUR-DEL-MUNDO-Visualizer.mp3?rlkey=zzoottr3qp1s7jjtwfketnwf2&st=1zg0zse4&dl=0"
-    ];
-    
-    const colorThemes = [
-        { l: '#e0f7fa', d: '#00bcd4', s: '#00897b', a: '#e91e63' }, 
-        { l: '#f8bbd0', d: '#e91e63', s: '#c2185b', a: '#4db6ac' }, 
-        { l: '#c8e6c9', d: '#4caf50', s: '#388e3c', a: '#ff9800' }, 
-        { l: '#fff3e0', d: '#ffb74d', s: '#f57c00', a: '#039be5' },
-        { l: '#e1bee7', d: '#9c27b0', s: '#7b1fa2', a: '#4dd0e1' }
-    ];
+    <script>
+        // --- CONFIGURACIÓN DE DATOS ---
+        const config = {
+            titles: [
+                "Mi Darling Adorada", "Mi Reina de Cali", "Mejor Amiga", 
+                "Compañera de Vida", "Alma Gemela", "Persona Favorita"
+            ],
+            phrases: [
+                "¿Ya comiste algo rico hoy? 🥐", "Toma agüita, hidrátate 💧", 
+                "Eres magia pura ✨", "Respira, todo saldrá bien 🌬️", 
+                "Tu sonrisa es mi motor 😊", "La mejor de todas 🏆",
+                "Hoy se vale todo el pastel 🍰", "Te quiero infinito 💙"
+            ],
+            songs: [
+                "https://dl.dropboxusercontent.com/scl/fi/ehgsuyuy16kfxwz94ko0v/AUDIO-2025-09-30-20-46-11.mp3?rlkey=wf5t9wmdqzt6vcouoxykgnyh5",
+                "https://dl.dropboxusercontent.com/scl/fi/t3tg9840c3n0haeiryk1s/AUDIO-2025-09-30-20-48-07.mp3?rlkey=m7bo5nf6sbq0lkqjio837rajo",
+                "https://dl.dropboxusercontent.com/scl/fi/2m0dpurkrxryxsy3ipg7i/AUDIO-2025-09-30-20-48-52.mp3?rlkey=js57rle74kvswwam4la1ooy92",
+                "https://dl.dropboxusercontent.com/scl/fi/ox7mgppj2jwlqgc8reqox/Manuel-Carrasco-Qu-Bonito-Es-Querer-Video-Oficial.mp3?rlkey=gs2qm1k6r9uf3uke2hnb3i54d&st=b286jtm2&dl=0",
+                "https://dl.dropboxusercontent.com/scl/fi/gf1fih936g0nny5vnpa0t/Jarabe-de-Palo-Eso-que-t-me-das-Videoclip-Oficial.mp3?rlkey=cjz7js8p0nasfvem78qbsvt6n&st=nk7d4wy5&dl=0"
+            ],
+            // Mensajes formateados para el efecto typewriter
+            messages: [
+                "Hoy cumples 19 y recuerdo cuando todo empezó en 2021. Una montaña rusa de emociones, pero eres mi persona favorita.",
+                "4,758 km no significan nada cuando la conexión es tan real. Gracias por transformar nuestra historia en hermandad.",
+                "Desde Copiapó hasta Cali, mi deseo es el mismo: que seas infinitamente feliz. ¡Te adoro con el alma!",
+                "19 años de luz. Gracias por ser mi confidente, mi apoyo y mi risa constante a pesar de la distancia.",
+                "Sé que la vida te tiene preparadas cosas gigantes. Y yo estaré ahí para aplaudirte, siempre."
+            ]
+        };
 
-    const titles = [
-        "Mi Darling Adorada",
-        "Mi Reina de Cali",
-        "Mi Mejor Amiga",
-        "Compañera de Vida",
-        "Mi Alma Gemela",
-        "Mi Persona Favorita",
-        "Mi Hermana de Vida"
-    ];
-
-    const randomPhrases = [
-        "¿Ya desayunaste hoy? 🥐",
-        "Toma aguita, la necesitas 💧",
-        "¡Eres increíble, en serio! ✨",
-        "¿Ya aprendiste a cocinar? 🍳",
-        "Respira hondo, todo va bien 🌬️",
-        "Tu sonrisa ilumina el planeta 😊",
-        "Mereces ser feliz siempre 🌈",
-        "¿No se te quemaron los huevos hoy? 😂",
-        "Estás brillando más que nunca ✨",
-        "La mejor amiga del mundo 🏆",
-        "Mereces todo lo bueno 💫",
-        "¿Ya sabes lavar bien la losa? 🧼",
-        "Tu energía es contagiosa ⚡",
-        "¿Ya te reíste hoy? 😄",
-        "¡Tómate un descanso, lo mereces! ☕",
-        "4,758 km y contando 🌎",
-        "¡Hoy se vale todo el pastel! 🍰",
-        "Te aprecio muchísimo 🤗",
-        "Nuestra videollamada pendiente 📞",
-        "La distancia no es nada 💙"
-    ];
-
-    let usedSongs = [];
-    let usedMessages = [];
-    let musicPlaying = false;
-    const audio = document.getElementById('birthday-audio');
-    const musicBtn = document.getElementById('musicBtn');
-
-
-    function applyRandomTheme() {
-        const theme = colorThemes[Math.floor(Math.random() * colorThemes.length)];
-        const root = document.documentElement;
-        root.style.setProperty('--primary-light', theme.l);
-        root.style.setProperty('--primary-dark', theme.d);
-        root.style.setProperty('--secondary-dark', theme.s);
-        root.style.setProperty('--accent-color', theme.a);
+        // --- LÓGICA DE PARTÍCULAS (Canvas) ---
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
         
-        // Ajustar el color del mapa en SVG dinámicamente
-        const mapStyle = document.createElement('style');
-        mapStyle.textContent = `
-            .world-map {
-                background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"><path d="M150,150 Q400,100 650,180" stroke="${encodeURIComponent(theme.s)}" stroke-width="3" fill="none" stroke-dasharray="8,5" opacity="0.8"/><circle cx="150" cy="150" r="10" fill="${encodeURIComponent(theme.a)}" stroke="%23ffffff" stroke-width="2"/><circle cx="650" cy="180" r="10" fill="${encodeURIComponent(theme.a)}" stroke="%23ffffff" stroke-width="2"/><text x="150" y="130" font-size="16" fill="${encodeURIComponent(theme.s)}" text-anchor="middle" font-weight="700">Copiapó 🇨🇱</text><text x="650" y="205" font-size="16" fill="${encodeURIComponent(theme.s)}" text-anchor="middle" font-weight="700">Cali 🇨🇴</text><path d="M400,100 L410,105 L390,105 Z" fill="${encodeURIComponent(theme.a)}"/></svg>');
+        // Ajustar canvas al tamaño de ventana
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const emojis = ['🌸', '✨', '💖', '🦋', '🍁', '🌺'];
+
+        class Particle {
+            constructor() {
+                this.reset();
             }
-        `;
-        document.head.appendChild(mapStyle);
-    }
-    
-    function selectRandomElement(arr, usedArr) {
-        let availableArr = arr.filter(el => !usedArr.includes(el));
-        if (availableArr.length === 0) { 
-            usedArr.length = 0; 
-            availableArr = [...arr]; 
-        }
-        const randomIndex = Math.floor(Math.random() * availableArr.length);
-        const randomElement = availableArr[randomIndex];
-        usedArr.push(randomElement);
-        return randomElement;
-    }
-    
-    function selectRandomSong() {
-        return selectRandomElement(songs, usedSongs);
-    }
+            
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = -50;
+                this.size = Math.random() * 20 + 10;
+                this.speedY = Math.random() * 1.5 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 1;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 2;
+                this.emoji = emojis[Math.floor(Math.random() * emojis.length)];
+                this.opacity = Math.random() * 0.5 + 0.5;
+            }
 
-    function selectRandomMessage() {
-        let availableIndices = [];
-        for (let i = 0; i < messages.length; i++) {
-            if (!usedMessages.includes(i)) { availableIndices.push(i); }
+            update() {
+                this.y += this.speedY;
+                this.x += Math.sin(this.y * 0.01) + this.speedX; // Movimiento ondulado
+                this.rotation += this.rotationSpeed;
+                
+                if (this.y > canvas.height + 50) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.globalAlpha = this.opacity;
+                ctx.font = `${this.size}px serif`;
+                ctx.fillText(this.emoji, -this.size/2, -this.size/2);
+                ctx.restore();
+            }
         }
-        if (availableIndices.length === 0) {
-            usedMessages = [];
-            availableIndices = Array.from({length: messages.length}, (_, i) => i);
+
+        function initParticles() {
+            particles = [];
+            const particleCount = window.innerWidth < 600 ? 25 : 50; // Menos partículas en móvil
+            for (let i = 0; i < particleCount; i++) {
+                let p = new Particle();
+                p.y = Math.random() * canvas.height; // Llenar pantalla inicialmente
+                particles.push(p);
+            }
         }
-        const randomIndex = availableIndices[Math.floor(Math.random() * availableIndices.length)];
-        usedMessages.push(randomIndex);
-        return messages[randomIndex];
-    }
-    
-    // Música Fix
-    function toggleMusic() {
-        if (musicPlaying) { 
-            audio.pause();
-            musicBtn.textContent = '🎵 Música';
-            musicPlaying = false;
-        } else { 
-            audio.play().then(() => {
-                musicBtn.textContent = '⏸️ Pausar';
-                musicPlaying = true;
-            }).catch(e => {
-                console.log("Reproducción bloqueada (toggle):", e);
-                musicBtn.textContent = '⚠️ Toca para reproducir';
-                musicPlaying = false;
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
             });
+            requestAnimationFrame(animateParticles);
         }
-    }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        applyRandomTheme();
+        // --- LÓGICA DE INTERFAZ ---
         
-        // Asignar elementos dinámicos
-        const selectedTitle = titles[Math.floor(Math.random() * titles.length)];
-        document.getElementById('personName').textContent = selectedTitle;
+        // Selector Aleatorio
+        function pickRandom(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
 
-        const selectedMessage = selectRandomMessage();
-        // FIX: Usar innerHTML para interpretar las etiquetas HTML (strong, em)
-        document.getElementById('mainMessage').innerHTML = selectedMessage.main;
-        document.getElementById('secondMessage').innerHTML = selectedMessage.second;
-
-        const randomPhraseText = randomPhrases[Math.floor(Math.random() * randomPhrases.length)];
-        document.getElementById('randomPhrase').textContent = randomPhraseText;
-
-        // Cargar y intentar reproducir música
-        const initialSong = selectRandomSong();
-        audio.src = initialSong;
+        // Efecto Typewriter (Máquina de escribir)
+        const textElement = document.getElementById('typewriter-text');
         
-        // Intento de auto-play al cargar (los navegadores modernos lo suelen bloquear)
-        audio.play().then(() => {
-            musicBtn.textContent = '⏸️ Pausar';
-            musicPlaying = true;
-        }).catch(e => {
-            console.log("Reproducción automática bloqueada. El usuario debe interactuar.");
-            musicBtn.textContent = '🎵 Música'; 
-            musicPlaying = false;
+        function typeWriter(text, i = 0) {
+            if (i < text.length) {
+                // Si encontramos un punto, hacemos una pausa más larga visualmente
+                textElement.innerHTML = text.substring(0, i+1) + '<span class="cursor"></span>';
+                setTimeout(() => typeWriter(text, i + 1), 50); // Velocidad de escritura
+            } else {
+                textElement.innerHTML = text; // Quitar cursor al final
+            }
+        }
+
+        // Música
+        const audio = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        const musicText = document.getElementById('musicText');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                musicBtn.classList.remove('music-playing');
+                musicBtn.classList.add('music-paused');
+                musicText.textContent = "Play";
+            } else {
+                // Si no hay fuente, asignar una random
+                if (!audio.src) audio.src = pickRandom(config.songs);
+                
+                audio.play().then(() => {
+                    musicBtn.classList.add('music-playing');
+                    musicBtn.classList.remove('music-paused');
+                    musicText.textContent = "Pausar";
+                }).catch(e => {
+                    console.log("Error playing:", e);
+                    musicText.textContent = "Error";
+                });
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // --- INICIALIZACIÓN ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initParticles();
+            animateParticles();
+
+            // Asignar Título Aleatorio
+            document.getElementById('dynamicTitle').textContent = pickRandom(config.titles);
+            
+            // Asignar Frase Aleatoria
+            document.getElementById('randomPhrase').textContent = pickRandom(config.phrases);
+
+            // Iniciar Escritura del Mensaje Principal
+            // Seleccionamos un mensaje random y le aplicamos formato HTML básico
+            const rawMsg = pickRandom(config.messages);
+            // Reemplazamos palabras clave para dar estilo
+            const styledMsg = rawMsg
+                .replace("19", "<span class='highlight'>19</span>")
+                .replace("2021", "<span class='highlight'>2021</span>")
+                .replace("Darling", "<span class='cursive-highlight'>Darling</span>");
+            
+            // Nota: El typewriter simple no parsea HTML bien mientras escribe, 
+            // así que para mantenerlo simple y sin errores, usamos el texto plano para el efecto,
+            // o insertamos el HTML al final. Vamos a usar un fade-in simple para el HTML si es complejo,
+            // pero probaremos el typewriter con texto plano enriquecido luego.
+            
+            // Simplificación para robustez: Usar innerHTML directo con animación CSS fade
+            textElement.style.opacity = 0;
+            textElement.innerHTML = styledMsg;
+            
+            // Pequeña animación de entrada manual para el texto
+            setTimeout(() => {
+                textElement.style.transition = "opacity 2s ease";
+                textElement.style.opacity = 1;
+            }, 500);
+
+            // Configurar Audio inicial
+            audio.src = pickRandom(config.songs);
+            audio.volume = 0.6;
+
+            musicBtn.addEventListener('click', toggleMusic);
+
+            // Interacción táctil para autoplay fallback
+            document.body.addEventListener('click', function fallbackPlay() {
+                if(!isPlaying) {
+                    // Intentar reproducir sutilmente al primer toque si el usuario no ha tocado el botón
+                   // Opcional: Dejamos el control manual para no ser invasivos
+                }
+                document.body.removeEventListener('click', fallbackPlay);
+            }, {once:true});
         });
-    });
 
-    // Fallback: Intenta reproducir si hay un click/tap en cualquier parte
-    document.addEventListener('click', function autoPlayFallback() {
-        if (!musicPlaying && audio.paused) {
-            audio.play().then(() => {
-                musicBtn.textContent = '⏸️ Pausar';
-                musicPlaying = true;
-                // Una vez que funciona, removemos este listener
-                document.removeEventListener('click', autoPlayFallback);
-            }).catch(e => {
-                console.log("Fallback de reproducción bloqueado.");
-                musicBtn.textContent = '⚠️ Toca para reproducir';
-                musicPlaying = false;
-            });
-        }
-    });
-
-    musicBtn.addEventListener('click', toggleMusic);
-
-
-    // Lógica de flores y pétalos
-    const flowerEmojis = ['🌹', '🌺', '💐', '🌷', '🏵️', '🌸', '✨', '🌟', '💛', '💖', '🌼', '🥀'];
-    let flowerInterval;
-    let petalInterval;
-    let flowerRate = 250; 
-    let petalRate = 200; 
-
-    function createFlower() {
-        const flower = document.createElement('div');
-        flower.classList.add('flower');
-        flower.textContent = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
-        flower.style.left = Math.random() * window.innerWidth + 'px';
-        flower.style.animationDuration = (Math.random() * 5 + 6) + 's';
-        flower.style.animationDelay = (-Math.random() * 3) + 's';
-        document.body.appendChild(flower);
-        setTimeout(() => { flower.remove(); }, 30000); 
-    }
-
-    function createPetal() {
-        const petal = document.createElement('div');
-        petal.classList.add('petal');
-        petal.style.left = Math.random() * window.innerWidth + 'px';
-        petal.style.animationDuration = (Math.random() * 4 + 5) + 's';
-        petal.style.animationDelay = (-Math.random() * 4) + 's';
-        
-        const colors = [
-            'radial-gradient(ellipse at center, var(--primary-dark) 0%, var(--secondary-dark) 100%)',
-            'radial-gradient(ellipse at center, var(--primary-light) 0%, var(--primary-dark) 100%)',
-            'radial-gradient(ellipse at center, var(--accent-color) 0%, var(--secondary-dark) 100%)'
-        ];
-        petal.style.background = colors[Math.floor(Math.random() * colors.length)];
-        
-        document.body.appendChild(petal);
-        setTimeout(() => { petal.remove(); }, 25000);
-    }
-    
-    function startFalling() {
-        for (let i = 0; i < 60; i++) { createFlower(); }
-        for (let i = 0; i < 80; i++) { createPetal(); }
-        
-        flowerInterval = setInterval(createFlower, flowerRate);
-        petalInterval = setInterval(createPetal, petalRate);
-    }
-
-    function accelerateFalling() {
-        clearInterval(flowerInterval);
-        clearInterval(petalInterval);
-        
-        flowerRate = 125; 
-        petalRate = 100;   
-        
-        flowerInterval = setInterval(createFlower, flowerRate);
-        petalInterval = setInterval(createPetal, petalRate);
-    }
-    
-    startFalling();
-    setTimeout(accelerateFalling, 180000); 
-
-</script>
-
+    </script>
 </body>
 </html>
